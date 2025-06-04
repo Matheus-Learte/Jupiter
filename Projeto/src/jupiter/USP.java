@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class USP {
-    List<Curso> cursos;
+    private List<Instituto> institutos;
+    private int numInstitutos;
 
     USP() {
-        cursos = new ArrayList<>();
+        this.institutos = new ArrayList<>();
+        this.numInstitutos = 0;
     }
 
-    public void setCurso(String nome, String unidade, int ideal, int min, int max) {
-        cursos.add(new Curso(nome, unidade, ideal, min, max));
+    public void setInstituto(String instituto) {
+        this.institutos.add(new Instituto(instituto));
+        this.numInstitutos++;
+    }
+    
+    public Instituto getIntitutos(int i){
+        return this.institutos.get(i);
     }
 
-    public Curso getCurso(int i) {
-        return this.cursos.get(i);
+    public int getNumInstitutos(){
+        return this.numInstitutos;
     }
 }

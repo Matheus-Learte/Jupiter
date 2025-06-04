@@ -78,4 +78,11 @@ public class Disciplina {
     public void setCarga_curriculares(int carga_curriculares) {
         this.carga_curriculares = carga_curriculares;
     }
+
+    @Override
+    public String toString(){
+        String aux="";
+
+        return aux;
+    }
 }

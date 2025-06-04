@@ -92,4 +92,11 @@ public class Curso {
                 return null;
         }
     }
+
+    @Override
+    public String toString(){
+        String aux="";
+
+        return aux;
+    }
 }
