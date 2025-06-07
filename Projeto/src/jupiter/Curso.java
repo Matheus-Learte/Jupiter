@@ -1,12 +1,12 @@
 package jupiter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Curso {
-    String nome, unidade;
-    int ideal, min, max;
-    List<Disciplina> obrigatorias, livres, eletivas;
+    private String nome, unidade;
+    private int ideal, min, max;
+    private Map<String,Disciplina> obrigatorias, livres, eletivas;
 
     Curso(String nome, String unidade, int ideal, int min, int max) {
         this.nome = nome;
@@ -15,9 +15,9 @@ public class Curso {
         this.min = min;
         this.max = max;
 
-        this.obrigatorias = new ArrayList<>();
-        this.livres = new ArrayList<>();
-        this.eletivas = new ArrayList<>();
+        this.obrigatorias = new HashMap<>();
+        this.livres = new HashMap<>();
+        this.eletivas = new HashMap<>();
     }
 
     public String getNome() {
@@ -64,15 +64,15 @@ public class Curso {
     public void setDisciplina(char flag, String codigo, String nome, String teorico, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr) {
         switch (flag) {
             case 'O':
-                this.obrigatorias.add(new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr));
+                this.obrigatorias.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
                 break;
 
             case 'E':
-                this.eletivas.add(new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr));
+                this.eletivas.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
                 break;
             
             case 'L':
-                this.livres.add(new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr));
+                this.livres.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
                 break;
             
             default:
@@ -80,7 +80,7 @@ public class Curso {
         }
     }
     
-    public Disciplina getDisciplina(char flag, int i){
+    public Disciplina getDisciplina(char flag, String i){
         switch (flag) {
             case 'O':
                 return this.obrigatorias.get(i);

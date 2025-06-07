@@ -1,10 +1,14 @@
 package jupiter;
 
-public class Disciplina {
-    String codigo, nome, teorico;
-    int creditos_aula, creditos_trabalho, carga, carga_estagio, carga_curriculares;
+import java.util.List;
+import java.util.ArrayList;
 
-    Disciplina(String codigo, String nome, String teorico, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr) {
+public class Disciplina{
+    private String codigo, nome, teorico;
+    private int creditos_aula, creditos_trabalho, carga, carga_estagio, carga_curriculares;
+    private List<String> cursos = new ArrayList<>();
+
+    Disciplina(String codigo, String nome, String teorico, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr, String curso) {
         this.codigo = codigo;
         this.nome = nome;
         this.teorico = teorico;
@@ -13,6 +17,20 @@ public class Disciplina {
         this.carga = carga;
         this.carga_estagio = carga_est;
         this.carga_curriculares = carga_curr;
+        
+        if (!busca(curso)) {
+            this.cursos.add(curso);
+        }
+    }
+
+    private boolean busca(String nome){
+        for(String i : this.cursos){
+            if(nome.equals(i)){
+                return true;
+            }
+        }
+    
+        return false;
     }
 
     public String getCodigo() {
@@ -77,6 +95,10 @@ public class Disciplina {
 
     public void setCarga_curriculares(int carga_curriculares) {
         this.carga_curriculares = carga_curriculares;
+    }
+
+    public List<String> getCursos(int i){
+        return this.cursos;
     }
 
     @Override

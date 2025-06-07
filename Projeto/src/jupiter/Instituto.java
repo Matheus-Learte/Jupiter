@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Instituto {
     private Map<String,Curso> cursos;
-    int numCursos;
+    private int numCursos;
     private String nome;
 
     Instituto(String nome){
