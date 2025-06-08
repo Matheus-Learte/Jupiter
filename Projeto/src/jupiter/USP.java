@@ -7,7 +7,7 @@ public class USP {
     private List<Instituto> institutos;
     private int numInstitutos;
 
-    USP() {
+    public USP() {
         this.institutos = new ArrayList<>();
         this.numInstitutos = 0;
     }

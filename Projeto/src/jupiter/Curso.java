@@ -61,18 +61,18 @@ public class Curso {
     }
 
     
-    public void setDisciplina(char flag, String codigo, String nome, String teorico, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr) {
+    public void setDisciplina(char flag, String codigo, String nome, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr, int carga_pratica) {
         switch (flag) {
             case 'O':
-                this.obrigatorias.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
+                this.obrigatorias.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
                 break;
 
             case 'E':
-                this.eletivas.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
+                this.eletivas.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
                 break;
             
             case 'L':
-                this.livres.put(nome, new Disciplina(codigo, nome, teorico, cred_aula, cred_work, carga, carga_est, carga_curr, this.getNome()));
+                this.livres.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
                 break;
             
             default:

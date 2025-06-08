@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Disciplina{
-    private String codigo, nome, teorico;
-    private int creditos_aula, creditos_trabalho, carga, carga_estagio, carga_curriculares;
+    private String codigo, nome;
+    private int creditos_aula, creditos_trabalho, carga, carga_estagio, carga_curriculares, carga_pratica;
     private List<String> cursos = new ArrayList<>();
 
-    Disciplina(String codigo, String nome, String teorico, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr, String curso) {
+    Disciplina(String codigo, String nome, int cred_aula, int cred_work, int carga, int carga_est, int carga_curr, int carga_pratica, String curso) {
         this.codigo = codigo;
         this.nome = nome;
-        this.teorico = teorico;
         this.creditos_aula = cred_aula;
         this.creditos_trabalho = cred_work;
         this.carga = carga;
         this.carga_estagio = carga_est;
         this.carga_curriculares = carga_curr;
+        this.carga_pratica = carga_pratica;
         
         if (!busca(curso)) {
             this.cursos.add(curso);
@@ -49,12 +49,12 @@ public class Disciplina{
         this.nome = nome;
     }
 
-    public String getTeorico() {
-        return this.teorico;
+    public int getCargaPratica() {
+        return this.carga_pratica;
     }
 
-    public void setTeorico(String teorico) {
-        this.teorico = teorico;
+    public void setTeorico(int aux) {
+        this.carga_pratica = aux;
     }
 
     public int getCreditos_aula() {
