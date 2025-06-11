@@ -2,18 +2,22 @@ package jupiter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Curso {
     private String nome, unidade;
     private int ideal, min, max;
     private Map<String,Disciplina> obrigatorias, livres, eletivas;
+    Instituto inst;
 
-    Curso(String nome, String unidade, int ideal, int min, int max) {
+    Curso(String nome, String unidade, int ideal, int min, int max, Instituto inst) {
         this.nome = nome;
         this.unidade = unidade;
         this.ideal = ideal;
         this.min = min;
         this.max = max;
+        this.inst = inst;
 
         this.obrigatorias = new HashMap<>();
         this.livres = new HashMap<>();
@@ -65,14 +69,17 @@ public class Curso {
         switch (flag) {
             case 'O':
                 this.obrigatorias.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
+                this.inst.setDisciplinas(this.nome, nome);
                 break;
 
             case 'E':
                 this.eletivas.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
+                this.inst.setDisciplinas(this.nome, nome);
                 break;
             
             case 'L':
                 this.livres.put(nome, new Disciplina(codigo, nome, cred_aula, cred_work, carga, carga_est, carga_curr, carga_pratica, this.getNome()));
+                this.inst.setDisciplinas(this.nome, nome);
                 break;
             
             default:
@@ -93,9 +100,43 @@ public class Curso {
         }
     }
 
-    @Override
+    public List<String> getDisciplinas(char flag){
+        switch (flag) {
+            case 'O':
+                return new ArrayList<>(this.obrigatorias.keySet());
+            case 'E':
+                return new ArrayList<>(this.eletivas.keySet());
+            case 'L':
+                return new ArrayList<>(this.livres.keySet());
+            default:
+                return null;
+        }
+    }
+
     public String toString(){
         String aux="";
+
+        aux+="Nome do curso: "+this.nome+"\n"
+            +"Nome da unidade: "+this.unidade+"\n"
+            +"Periodo ideal: "+this.ideal+"     "
+            +"Periodo minimo: "+this.min+"      "
+            +"Periodo máximo: "+this.max+"\n"
+            +"- Disciplinas Obrigatórias:"+"\n"
+            +imprime_disciplinas(this.obrigatorias)+"\n"
+            +"- Disciplinas Livres:"+"\n"
+            +imprime_disciplinas(this.livres)+"\n"
+            +"- Disciplinas Eletivas:"+"\n"
+            +imprime_disciplinas(this.eletivas)+"\n";
+
+        return aux;
+    }
+
+    private String imprime_disciplinas(Map<String, Disciplina> disciplinas){
+        String aux ="";
+
+        for(Map.Entry<String, Disciplina> i : disciplinas.entrySet()){
+            aux+="  - "+i.getKey()+"\n";
+        }
 
         return aux;
     }

@@ -1,27 +1,52 @@
 package jupiter;
 
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class USP {
-    private List<Instituto> institutos;
+    private Map<String,Instituto> institutos;
+    private Map<String, String> Siglas;
     private int numInstitutos;
 
     public USP() {
-        this.institutos = new ArrayList<>();
+        this.institutos = new HashMap<>();
+        this.Siglas= new HashMap<>();
         this.numInstitutos = 0;
     }
 
     public void setInstituto(String instituto) {
-        this.institutos.add(new Instituto(instituto));
+        String aux="";
+        this.institutos.put(instituto, new Instituto(instituto)); 
+
+        boolean flag = false;
+        for(char i : instituto.toCharArray()){
+            if(i=='(')
+                flag=!flag;
+            else if(i==')')
+                break;
+            else if(flag && i!=' ')
+                aux+=i;        
+        }
+
+        this.Siglas.put(aux, instituto);
         this.numInstitutos++;
     }
-    
-    public Instituto getIntitutos(int i){
-        return this.institutos.get(i);
+ 
+    public Instituto getIntituto(String nome){
+        return this.institutos.get(nome);
+    }
+
+    public List<String> getIntitutos(){
+        return new ArrayList<>(this.institutos.keySet());
     }
 
     public int getNumInstitutos(){
         return this.numInstitutos;
+    }
+
+    public String getSigla(String sigla){
+        return this.Siglas.get(sigla);
     }
 }

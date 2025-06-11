@@ -3,7 +3,7 @@ package jupiter;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Disciplina{
+public class Disciplina extends USP{
     private String codigo, nome;
     private int creditos_aula, creditos_trabalho, carga, carga_estagio, carga_curriculares, carga_pratica;
     private List<String> cursos = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Disciplina{
         this.carga_estagio = carga_est;
         this.carga_curriculares = carga_curr;
         this.carga_pratica = carga_pratica;
-        
+
         if (!busca(curso)) {
             this.cursos.add(curso);
         }
@@ -97,14 +97,22 @@ public class Disciplina{
         this.carga_curriculares = carga_curriculares;
     }
 
-    public List<String> getCursos(int i){
+    public List<String> getCursos(){
         return this.cursos;
     }
 
     @Override
     public String toString(){
         String aux="";
-
+        
+        aux+="Nome da disciplina: "+this.nome+"\n"
+             +"Código da disciplina: "+this.codigo+"\n"
+             +"Créditos aula: "+(this.creditos_aula==-1 ? "Nada consta":this.creditos_aula)+"\n"
+             +"Créditos Trabalho: "+(this.creditos_trabalho==-1 ? "Nada consta":this.creditos_trabalho)+"\n"
+             +"Carga horária: "+(this.carga==-1 ? "Nada consta":this.carga)+"\n"
+             +"Carga horária de estágio: "+(this.carga_estagio==-1 ? "Nada consta":this.carga_estagio)+"\n"
+             +"Carga horária de Práticas como Componentes Curriculares: "+(this.carga_curriculares==-1 ? "Nada consta":this.carga_curriculares)+"\n"
+             +"Atividades Teórico-Práticas de Aprofundamento: "+(this.carga_pratica==-1 ? "Nada consta":this.carga_pratica)+"\n";
         return aux;
     }
 }
