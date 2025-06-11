@@ -21,13 +21,20 @@ public class USP {
         this.institutos.put(instituto, new Instituto(instituto)); 
 
         boolean flag = false;
-        for(char i : instituto.toCharArray()){
-            if(i=='(')
+        char[] array = instituto.toCharArray();
+
+        for(int i = 0; i<array.length; i++){
+            if(array[i]=='('){
                 flag=!flag;
-            else if(i==')')
-                break;
-            else if(flag && i!=' ')
-                aux+=i;        
+                i++;
+            }
+
+            if(flag){
+                if(array[i+1]==')'){
+                    break;
+                }else
+                    aux+=array[i];
+            }
         }
 
         this.Siglas.put(aux, instituto);
